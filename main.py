@@ -11,6 +11,17 @@ def hello():
     return 'Zdar cegře'
 
 
+@app.route('/files')
+def files():
+    res = []
+
+    for file_path in os.listdir(uploads_folder):
+        if os.path.isfile(os.path.join(uploads_folder, file_path)):
+            res.append(file_path)
+
+    return res
+
+
 @app.route('/uploader', methods=['GET', 'POST'])
 def upload_file():
     if request.method == 'POST':
