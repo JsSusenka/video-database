@@ -5,16 +5,19 @@ uploads_folder = "uploads"
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def hello():
     return 'Zdar cegře'
 
-@app.route('/uploader', methods = ['GET', 'POST'])
+
+@app.route('/uploader', methods=['GET', 'POST'])
 def upload_file():
-   if request.method == 'POST':
-      f = request.files['file']
-      f.save(f"{uploads_folder}/{f.filename}")
-      return 'file uploaded successfully'
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save(f"{uploads_folder}/{f.filename}")
+        return 'file uploaded successfully'
+
 
 if __name__ == "__main__":
     if not os.path.exists(uploads_folder):
